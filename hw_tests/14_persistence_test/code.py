@@ -55,8 +55,7 @@ print(f"  bright={bright}")
 # Thresholds: window around dark so bright light is OUTSIDE
 # low=0, high = dark + small margin -> bright readings exceed high -> fires
 high = dark + (bright - dark) // 4
-if high < dark + 10:
-    high = dark + 10
+high = max(high, dark + 10)
 tcs.als_threshold_low = 0
 tcs.als_threshold_high = high
 print(f"  threshold high={high}")

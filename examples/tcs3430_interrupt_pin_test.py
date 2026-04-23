@@ -39,10 +39,8 @@ x, y, z, ir1 = tcs.channels
 
 # Thresholds compare against CH0 (Z channel)
 threshold = z * 2  # 2x above current ambient
-if threshold < z + 200:
-    threshold = z + 200
-if threshold > 65000:
-    threshold = 65000
+threshold = max(threshold, z + 200)
+threshold = min(threshold, 65000)
 
 print(f"Current ambient Z: {z}")
 print(f"Interrupt threshold (high): {threshold}")
